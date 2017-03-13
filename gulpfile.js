@@ -14,6 +14,7 @@
         tap = require('gulp-tap'),
         concat = require('gulp-concat'),
         jshint = require('gulp-jshint'),
+        jasmine = require('gulp-jasmine'),
         stylish = require('jshint-stylish'),
         fs = require('fs'),
         paths = {
@@ -551,5 +552,10 @@
 
     gulp.task('default', [ 'server' ]);
 
-    gulp.task('test', [ 'build' ]);
+    gulp.task('specs', function () {
+    return gulp.src('spec/*.js')
+        .pipe(jasmine());
+    });
+
+    gulp.task('test', [ 'build', 'specs' ]);
 })();
